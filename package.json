@@ -26,7 +26,8 @@
     "express": "^4.15.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.0",
-    "synaptic": "^1.0.10"
+    "synaptic": "^1.0.10",
+    "typescript": "^2.2.2"
   },
   "devDependencies": {
     "@types/node": "^7.0.13",
