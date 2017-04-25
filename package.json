@@ -1,7 +1,7 @@
 {
-  "name": "weanen",
+  "name": "weacore",
   "version": "1.0.0",
-  "description": "Simple Neural net module",
+  "description": "Main module of WeaConPi",
   "main": "index.js",
   "scripts": {
     "start": "npm run build:live",

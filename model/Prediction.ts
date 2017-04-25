@@ -3,18 +3,18 @@
  */
 export interface IPrediction {
     heat: number;
-    blinders: boolean;
+    blinders: number;
     windows: number;
     id: string;
 }
 export class Prediction implements IPrediction {
     heat: number;
-    blinders: boolean;
+    blinders: number;
     windows: number;
     id: string;
 
 
-    constructor(heat?: number, blinders?: boolean, windows?: number, id?: string) {
+    constructor(heat?: number, blinders?: number, windows?: number, id?: string) {
         this.heat = heat;
         this.blinders = blinders;
         this.windows = windows;
@@ -24,7 +24,7 @@ export class Prediction implements IPrediction {
 export const mapResponseToPrediction = (prediction): IPrediction => {
 
     let heat = -999999;
-    let blinders = false;
+    let blinders = -999999;
     let windows = -999999;
     let predictionJSON;
 
@@ -32,7 +32,7 @@ export const mapResponseToPrediction = (prediction): IPrediction => {
         predictionJSON = JSON.parse(prediction)
         if (predictionJSON) {
             heat = predictionJSON.heat;
-            blinders = predictionJSON.blinders > 0.5;
+            blinders = predictionJSON.blinders;
             windows = predictionJSON.windows;
         }
         return new Prediction(heat, blinders, windows);
