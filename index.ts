@@ -6,8 +6,9 @@ import { handleNewMeasurementHook } from "./service/PredictionHandler";
 const app = express();
 const PORT = (process.env.PORT || 4000);
 
-app.get('/fetchforecast', (request, response) => {
-    handleNewMeasurementHook("58f36cd82b6d5151a437dadb")
+app.get('/dummyprocesstest', (request, response) => {
+    const hourId = String(request.param('hourId'));
+    handleNewMeasurementHook(hourId)
     response.send("forecasted")
 });
 
@@ -17,8 +18,7 @@ app.get('/hello', (request, response) => {
 app.get('/measurement-hook', (request, response) => {
 
     const hourId = String(request.param('hourId'));
-
-    console.log("measurement hook was triggered with id " + hourId)
+    handleNewMeasurementHook(hourId)
     response.send("Hello")
 });
 

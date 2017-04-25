@@ -3,11 +3,12 @@
  */
 import * as rp from "request-promise";
 import { IForecastWeather } from "../model/ForecastWeather";
-const host = process.env.weaper;
+import { weaPerHost } from "../network";
+
 export const persistForecastByHourID = async(hourId: string, forecast: IForecastWeather) => {
     const options = {
         method: 'PATCH',
-        uri: `${host}/api/hours/${hourId}`,
+        uri: `${weaPerHost}/api/hours/${hourId}`,
         body: {
             forecast
         },
@@ -15,12 +16,13 @@ export const persistForecastByHourID = async(hourId: string, forecast: IForecast
     };
 
     let insertedForecast;
-    try {
+    try {console.log('Persisting forecast')
+        console.log(options)
         insertedForecast = await rp(options)
     }
     catch (e) {
-        console.log("Error fetching weather");
+        console.log("Error persisting forecast");
         console.log(e);
     }
-    return insertedForecast.forecast;
+    return insertedForecast;
 };
