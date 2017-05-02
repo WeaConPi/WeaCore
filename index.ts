@@ -6,6 +6,12 @@ import { handleNewMeasurementHook, getCalculationPure } from "./service/Predicti
 const app = express();
 const PORT = (process.env.PORT || 4000);
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.get('/dummyprocesstest', (request, response) => {
     const hourId = String(request.query.hourId);
     handleNewMeasurementHook(hourId).catch(console.log)
