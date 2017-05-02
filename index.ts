@@ -16,14 +16,14 @@ app.get('/hello', (request, response) => {
     response.send("Hello")
 });
 
-app.get('/get-brain-calculation', (request, response) => {
+app.get('/get-brain-calculation', async (request, response) => {
     const day = Number(request.query.day);
     const month = Number(request.query.month);
     const hour = Number(request.query.hour);
     const temp = Number(request.query.temp);
     const houseTemp = Number(request.query.houseTemp);
     console.log('Requesting brain calculation');
-    const result = getCalculationPure(month, day, hour, temp, houseTemp);
+    const result = await getCalculationPure(month, day, hour, temp, houseTemp);
     response.send(result)
 });
 
